@@ -365,21 +365,21 @@ $$
 
 ### 2. 拉格朗日乘法求解
 
-因为带有限制 $\mathbf{e}_q^T \delta w = -w_q$ ($\delta w$ 的第 $q$ 位变化为 $-w_q$):
+因为带有限制 $\mathbf{e}_q^T \delta \mathbf{w} = -w_q$ ($\delta \mathbf{w}$ 的第 $q$ 位变化为 $-w_q$):
 $$
-\min_{\delta w} \frac{1}{2} \delta w^T \mathbf{H} \delta w \quad \\ \text{s.t.} \quad \mathbf{e}_q^T \delta w = -w_q
+\min_{\delta \mathbf{w}} \frac{1}{2} \delta \mathbf{w}^T \mathbf{H} \delta \mathbf{w} \quad \text{s.t.} \quad \mathbf{e}_q^T \delta \mathbf{w} = -w_q
 $$
 构造函数：
 $$
-L = \frac{1}{2} \delta w^T \mathbf{H} \delta w - \lambda (\mathbf{e}_q^T \delta w + w_q)
+L = \frac{1}{2} \delta \mathbf{w}^T \mathbf{H} \delta \mathbf{w} - \lambda (\mathbf{e}_q^T \delta \mathbf{w} + w_q)
 $$
-对 $\delta w$ 求导并令为 0：$e_q$ 是标准的 one-hot vector，第 $q$ 个位置为 1
+对 $\delta \mathbf{w}$ 求导并令为 0：$\mathbf{e}_q$ 是标准的 one-hot vector，第 $q$ 个位置为 1
 $$
-\mathbf{H} \delta w - \lambda \mathbf{e}_q = 0 \implies \delta w = \lambda \mathbf{H}^{-1} \mathbf{e}_q
+\mathbf{H} \delta \mathbf{w} - \lambda \mathbf{e}_q = 0 \implies \delta \mathbf{w} = \lambda \mathbf{H}^{-1} \mathbf{e}_q
 $$
-这意味最优权重更新 $\delta w$，与海森矩阵的逆矩阵 $\mathbf{H}^{-1}$ 的第 $q$ 列成正比。
+这意味最优权重更新 $\delta \mathbf{w}$，与海森矩阵的逆矩阵 $\mathbf{H}^{-1}$ 的第 $q$ 列成正比。
 
-利用约束条件 $\mathbf{e}_q^T \delta w = -w_q$ 求解 $\lambda$：
+利用约束条件 $\mathbf{e}_q^T \delta \mathbf{w} = -w_q$ 求解 $\lambda$：
 $$
 \mathbf{e}_q^T (\lambda \mathbf{H}^{-1} \mathbf{e}_q) = -w_q
 $$
@@ -392,9 +392,9 @@ $$
 
 **公式 A：最优更新方向（怎么改其他权重？）**
 
-根据上述求解，可以得出 $\delta w$ 的值，它的含义是当你删除 $w_q$ 这个权重时，其他权重应该如何变化：
+根据上述求解，可以得出 $\delta \mathbf{w}$ 的值，它的含义是当你删除 $w_q$ 这个权重时，其他权重应该如何变化：
 $$
-\delta w = - \frac{w_q}{[\mathbf{H}^{-1}]_{qq}} \cdot \mathbf{H}^{-1}_{:,q}
+\delta \mathbf{w} = - \frac{w_q}{[\mathbf{H}^{-1}]_{qq}} \cdot \mathbf{H}^{-1}_{:,q}
 $$
 **公式 B：显著性得分（Saliency，删掉它的代价是多少？）**
 将 $\delta w$ 代回 $\delta E$ 公式：
