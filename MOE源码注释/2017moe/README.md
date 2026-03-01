@@ -12,6 +12,7 @@
     journal={https://github.com/davidmrau/mixture-of-experts},
     year={2019}
 }
+```
 
 ## 代码讲解说明
-  这部分代码是MOE的实现部分，主要包括门控网络（Gating Network）和专家网络（Experts）的定义和前向传播逻辑。还不是当前主流的transformer架构，只是一个基础的MOE实现。
+  这部分代码是MOE的实现部分，主要包括门控网络（Gating Network）和专家网络（Experts）的定义和前向传播逻辑。还不是当前主流的transformer架构，但是能帮助理解MOE的基本原理。可以在本人网站查看详细讲解：[MOE源码注释解析](https://alielie-9527.github.io/LLM之MOE（一）/)。
